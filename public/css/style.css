@@ -1,0 +1,57 @@
+
+/*いいねボタン*/
+.fas{
+	cursor: pointer;
+}
+
+.color-red{
+	color: red;
+}
+
+/*homeのタブ切り替え*/
+.home-button{
+	cursor: pointer;
+}
+
+.favorite-list{
+	display: none;
+}
+
+.addlook{
+	padding : 15px 10px;
+	background-color: #90c9cc;
+	border-top-right-radius:10px; 
+	border-top-left-radius:10px; 
+}
+
+
+/* 写真のホバー時の動き　*/
+.ph-style-base{
+	background-color: black;	
+	display: block;
+	position: relative;
+	height: 200px;
+	width: 300px;
+}
+
+.mask{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+　	left: 0;
+　	right: 0;
+　	bottom: 0;
+	color: white;
+	margin: auto;	
+	width: 300px;
+}
+
+.ph-style:hover{
+	opacity:0.5;
+}
+
+.ph-style-base:hover .mask{
+	opacity: 1;
+}
+
+
