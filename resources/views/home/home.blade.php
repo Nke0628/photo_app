@@ -51,7 +51,7 @@
         <div class="row favorite-list">
             @foreach($favorite_posts as $post)
                 <div class="col-md-4">
-                    <a href="{{ url('home/'.$post->id)}}"><img src="{{ asset('storage/' . $post->post->file_name) }}" width="300px" height="200px" style="margin-top: 20px;"></a>
+                    <a href="{{ url('home/'.$post->post->id)}}"><img src="{{ asset('storage/'. $post->post->file_name) }}" width="300px" height="200px" style="margin-top: 20px;"></a>
                 </div>
             @endforeach
         </div>

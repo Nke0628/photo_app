@@ -49,15 +49,21 @@ class HomeController extends Controller
         return response()->download($path);
     }
 
-    //削除
+    //削除(Likeも消す)
     public function destroy($id){
+
+        //投稿削除
         $post = Post::find($id);
         $post->delete();
+
+        //お気に入り削除
+        Like::where('post_id',$id)->delete();
+
         return redirect('/home');
     }
 
     //マイページ
-    public function showMypage($value=''){
+    public function showMypage(){
         return view('home.mypage');
     }
 }
