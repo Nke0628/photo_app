@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-</div>
 <div class="container">
+    @if (session('flash_message'))
+        <div class="flash_message bg-success text-center py-3 my-0">
+            {{ session('flash_message') }}
+        </div>
+    @endif
     <form class="form-group" method="post" action="{{url('posts')}}" enctype="multipart/form-data">
         @csrf
         <div class="row">

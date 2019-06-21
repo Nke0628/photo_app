@@ -22,9 +22,9 @@ Route::get('/home/{id}','HomeController@show');
 Route::get('/mypage' ,'HomeController@showMypage');
 Route::delete('/home/{id}/destroy','HomeController@destroy');
 
-
 //投稿関連
 Route::get('/posts', 'PostController@index');
+Route::get('/posts/moreLook','PostController@moreLook');
 Route::get('/posts/{id}','PostController@show');
 Route::post('/posts', 'PostController@store');
 Route::get('/posts/{id}/download','HomeController@download');

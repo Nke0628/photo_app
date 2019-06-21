@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+
         <!-- Styles -->
         <style>
             html, body {
@@ -53,7 +54,7 @@
             .mask{
                 opacity: 0;
                 position: absolute;
-            　   bottom: 0;
+            　  top:0;
                 color: white;
                 margin: auto;   
                 width: 300px;
@@ -65,6 +66,16 @@
 
             .ph-style-base:hover .mask{
                 opacity: 1;
+            }
+
+            /*photo*/
+            #top-photo{
+                text-align: center;
+            }
+
+            /*about*/
+            #about{
+                margin-top: 100px;
             }
         </style>
     </head>
@@ -123,11 +134,22 @@
                         </div>
                     @endforeach
                 </div>
+                
+                <button type="button" class="btn btn-success mt-5" onclick="moreLook()">もっと写真を見る</button>
+                <input type="hidden" class="photo-param" value="1">
+            </div>
+        </div>
+
+        <div id="about">
+            <div class="container">
+                私たちについて
             </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{{ asset('/js/post.js') }}"></script>
     </body>
 </html>

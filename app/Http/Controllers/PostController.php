@@ -22,7 +22,6 @@ class PostController extends Controller
 
     }
 
-
     //写真投稿
     public function store(Request $request){
 
@@ -61,6 +60,14 @@ class PostController extends Controller
         $post->file_name = $file_name;
         $post->save();
 
-    	return redirect('/home');
+    	return redirect('/home')->with('flash_message','写真を投稿しました');
+    }
+
+    public function moreLook(Request $request){
+        $page_number = $request->page_number;
+        $next_offset = $page_number * 9;
+        $posts = Post::skip($next_offset)->take(9)->get();
+        $post = json_encode($posts);
+        return $post; 
     }
 }

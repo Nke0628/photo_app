@@ -11,6 +11,8 @@ $(function(){
 		$('.photo-list').css('display','flex');
 	});
 
+	$('.flash_message').fadeOut(3000);
+
 });
 
 
@@ -46,6 +48,39 @@ function rmaddGood(){
 			$('.fas').addClass('color-red');
 
 		}
+	})
+	.fail(function(data){
+		alert(data.responseJSON);
+	})
+}
+
+//トップもっと見るボタン
+function moreLook(){
+	var page = $('.photo-param').val();
+	$.ajax({
+		headers:{
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+	url:'/posts/moreLook',
+	type:'GET',
+	datatype:'json',
+	data:{
+		page_number:page
+		}
+	})
+	.done(function(data){
+		var res = JSON.parse(data);
+		$.each(res,function(index,value){
+			var id = res[index].id;
+			var file_name = res[index].file_name;
+			console.log(res[index].id);
+			$('#top-photo').find('.row').append('<div class="col-md-4" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"></a>');
+		}) 
+		
+		var page_number = parseInt(page)
+		page_number = page_number + 1
+		$('.photo-param').val(page_number);
+
 	})
 	.fail(function(data){
 		alert(data.responseJSON);

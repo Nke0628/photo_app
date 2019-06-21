@@ -20,7 +20,7 @@
     	</div>
     @endauth
     <br>
-    <img src="{{ asset('storage/' . $post->file_name) }}">
+    <img  class="show-photo" src="{{ asset('storage/' . $post->file_name) }}">
 	<br>
 	<br>
 	<div class="row">
