@@ -57,4 +57,19 @@
         </div>
     </div>
 </div>
+<!-- タブボタン部分 -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active">タブ1</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">タブ2</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">タブ3</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">タブ4</a>
+  </li>
+</ul>
 @endsection

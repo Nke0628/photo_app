@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//トップページ
+Route::get('/', 'TopController@index');
 
 Auth::routes();
 

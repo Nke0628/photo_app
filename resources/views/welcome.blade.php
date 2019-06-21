@@ -7,8 +7,9 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
+        <!-- Fonts&Bootstprap -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
         <!-- Styles -->
         <style>
@@ -22,38 +23,7 @@
             }
 
             .title {
-                font-size: 30px;
-                position: absolute;
-                left:  100px;
-                top: 18px;
-                color: #333333;
-            }
-
-            .links > a {
-                color: #333333;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            header{
-                color: #333333;
-                height: 100px;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 100px;
-                top: 18px;
+                font-size: 25px;
             }
 
             /* 検索セクション*/
@@ -61,128 +31,103 @@
                 background-image: url({{asset('storage/tetwe.png')}});
                 background-size:cover;
                 height:500px;  
+                text-align:center;
+                color:white;
             }
 
             #search > .container{
-                vertical-align: middle;
-                text-align: center;
+                padding-top: 150px;_
+            }
+
+
+
+            /* 写真のホバー時の動き　*/
+            .ph-style-base{
+                background-color: black;    
+                display: block;
+                position: relative;
+                height: 200px;
+                width: 300px;
+            }
+
+            .mask{
+                opacity: 0;
+                position: absolute;
+            　   bottom: 0;
                 color: white;
+                margin: auto;   
+                width: 300px;
             }
 
-            .search-text{
-                width:600px;
-                height: 40px;
-                margin-top: 200px;
+            .ph-style:hover{
+                opacity:0.5;
             }
 
-            .search-button{
-                width: 30px;
-                height: 40px;
+            .ph-style-base:hover .mask{
+                opacity: 1;
             }
-
-            /**/
-            #photo{
-                display: block;
-                clear: both;
-            }
-            .image1{
-                display: block;
-                float: left;
-                width: 50%;
-                height: 400px;
-                background-size: cover;
-                background-image: url({{asset('storage/coffee2.jpg')}});
-            }
-
-            .image1 > img{
-                width:auto;
-                height: auto;
-            }
-
-            .image2{
-                display: block;
-                float: right;
-                width: 50%;
-                height: 400px;
-            }
-
-            .image3{
-                display: block;
-                float: left;
-                width: 50%;
-                height: 400px;
-                background-size: 100% auto;
-                background-image: url({{asset('storage/coffee2.jpg')}});
-            }
-
-            .image4{                
-                display: block;
-                float: right;
-                width: 50%;
-                height: 400px;
-                background-size: cover;
-                background-image: url({{asset('storage/coffee2.jpg')}});
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
         </style>
     </head>
     <body>
-        <header>
-            <div class="title">
-                PhotoBase
-            </div>
-            <div class="flex-center position-ref full-height">
+
+        <nav class="navbar navbar-expand-md  navbar-light p-4" style="background-color: white;">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+             </button>
+  
+            <div class="collapse navbar-collapse" id="bs-navi">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item title"><a class="nav-link">PhotoBase</a></li>
+                </ul>
                 @if (Route::has('login'))
-                    <div class="top-right links">
-                        @auth
-                            <a href="{{ url('/posts') }}">写真</a>
-                            <a href="{{ url('/home') }}">Home</a>
-                        @else
-                            <a href="{{ url('/posts') }}">写真</a>
-                            <a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">Register</a>
-                        @endauth
-                    </div>
+                <ul class="navbar-nav">
+                     @auth
+                    <li class="nav-item mx-15"><a class="nav-link" href="{{ url('/posts') }}">写真</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">HOME</a></li>
+                    @else
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/posts') }}">写真</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">登録</a></li>
+                    @endauth
+                </ul>
                 @endif
             </div>
-        </header>
+        </nav>
 
         <div id="search">
             <div class="container">
-                <form  method="post" action="{{ url('/posts' )}}">
-                <input class="search-text" type="text" placeholder="キーワード(例：人)" name="keyword">
-                <input class="search-button" type="submit" name="submit" value="検索">
+                <h2>美しいフリー写真をみていこう</h2>
+                <form method="post" action="{{ url('/posts' )}}">
+                    <div class="form-group form-inline">
+                        <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例：人)" name="keyword">
+                        <input class="search-button form-control col-md-1" type="submit" name="submit" value="検索">
+                    </div>
                 </form>
+                </div>
                 <p>Let'share photos</p>
                 <p>写真を共有しましょう</p>
-                <a href="{{ url('/posts') }}">一覧</a>
             </div>
         </div>
 
-        <div id="category">
+        <div id="top-photo">
             <div class="container">
-                <h3>カテゴリ</h3>
-            </div>
-        </div>
-
-
-        <!--
-        <div id="photo">
-            <div class="image1">
-                <img src="{{ asset('storage/coffee2.jpg') }}">
-            </div>
-            <div class="image2">
-                <div class="image3">
-                </div>
-                <div class="image4">
+                <div class="row">
+                    @foreach($posts as $post)
+                        <div class="col-md-4" style="margin-top:20px">
+                            <a class="ph-style-base" href="{{ url('posts/'.$post->id)}}">
+                            <img class="ph-style" src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px">
+                            <p class="mask"> 
+                            {{$post->likes->count()}}
+                            </p>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    -->
 
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
