@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{id}','HomeController@show');
 Route::get('/mypage' ,'HomeController@showMypage');
 Route::delete('/home/{id}/destroy','HomeController@destroy');
+Route::post('/mypage/icon', 'HomeController@storeIcon');
 
 //投稿関連
 Route::get('/posts', 'PostController@index');

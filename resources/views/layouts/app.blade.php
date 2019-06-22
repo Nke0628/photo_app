@@ -68,7 +68,7 @@
                                     </form>
 
                                     <a class="dropdown-item" href="{{ url('/mypage')}}">
-                                       マイページ
+                                       設定
                                     </a>
                                 </div>
                             </li>

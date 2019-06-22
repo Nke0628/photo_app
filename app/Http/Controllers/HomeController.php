@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Like;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -62,8 +63,53 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    //マイページ
+    //設定ページ
     public function showMypage(){
-        return view('home.mypage');
+        $user = User::find(Auth::id());
+        return view('home.mypage',compact('user'));
     }
+
+    //アイコン保存
+    public function storeIcon(Request $request){
+            //バリデーション
+        $request->validate([
+            'icon' => 'required|file|image'
+        ]);
+
+        //すでにアイコンを設定している場合は削除
+        //$user = User::find(Auth::id());
+        //if(!empty($user->user_image)){
+           // Storage::delete($user->user_image);
+        //}
+
+        //写真保存
+        //ファイルネームはランダムな１２桁から作成する
+        $characters = array_merge(
+            range(0, 9), range('a', 'z'),
+            range('A', 'Z'), ['-', '_']
+        );
+        $length=count($characters);
+        $file_name='';
+        for($i = 0 ; $i < 12 ; $i++){
+            $file_name .=$characters[random_int(0,$length-1)];
+        }
+
+        //jpgかpngにする
+        if(preg_match('/jpg$/', $request->file('icon')->getClientOriginalName())){
+            $file_name .= '.jpg';
+        }
+        else {
+            $file_name .= '.png';
+        }
+        //保存
+        $request->file('icon')->storeAs('public/icon',$file_name);
+
+        //DB格納
+        $user = User::find(Auth::id());
+        $user->user_image = $file_name;
+        $user->save();
+
+        return redirect('/mypage');
+    }
+
 }
