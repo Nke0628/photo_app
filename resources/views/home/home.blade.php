@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div id="home-profile">
+    <div class="container">
+    </div>
+</div>
+
 <div class="container">
     @if (session('flash_message'))
         <div class="flash_message bg-success text-center py-3 my-0">

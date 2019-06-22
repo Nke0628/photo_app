@@ -36,7 +36,8 @@ class HomeController extends Controller
     }
 
     //詳細表示
-    public function show($id){
+    public function show($id)
+    {
 
         $post = Post::find($id);
         return view('home.show',compact('post'));
@@ -44,14 +45,16 @@ class HomeController extends Controller
     }
 
     //ダウンロード
-    public function download($id){
+    public function download($id)
+    {
         $post = Post::find($id);
         $path='storage/'.$post->file_name;
         return response()->download($path);
     }
 
     //削除(Likeも消す)
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         //投稿削除
         $post = Post::find($id);
@@ -64,7 +67,8 @@ class HomeController extends Controller
     }
 
     //設定ページ
-    public function showMypage(){
+    public function showMypage()
+    {
         $user = User::find(Auth::id());
         return view('home.mypage',compact('user'));
     }
@@ -101,6 +105,7 @@ class HomeController extends Controller
         else {
             $file_name .= '.png';
         }
+        
         //保存
         $request->file('icon')->storeAs('public/icon',$file_name);
 

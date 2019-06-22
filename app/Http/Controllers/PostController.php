@@ -9,13 +9,15 @@ use App\Post;
 class PostController extends Controller
 {
     //一覧表示
-    public function index(){
+    public function index()
+    {
         $posts = Post::all();
         return view('posts.index',compact('posts'));
     }
 
     //写真詳細
-    public function show($id){
+    public function show($id)
+    {
 
         $post = Post::find($id);
         return view('posts.show',compact('post'));
@@ -23,7 +25,8 @@ class PostController extends Controller
     }
 
     //写真投稿
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         //バリデーション
         $request->validate([
@@ -63,7 +66,10 @@ class PostController extends Controller
     	return redirect('/home')->with('flash_message','写真を投稿しました');
     }
 
-    public function moreLook(Request $request){
+    //もっと見る機能
+    public function moreLook(Request $request)
+    {   
+        //一回で9件取得する
         $page_number = $request->page_number;
         $next_offset = $page_number * 9;
         $posts = Post::skip($next_offset)->take(9)->get();

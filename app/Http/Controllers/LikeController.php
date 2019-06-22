@@ -9,7 +9,8 @@ use App\Like;
 class LikeController extends Controller
 {
 	//保存
-    public function store_delete(Request $request){
+    public function goodStoreDel(Request $request)
+    {
 
     	if($request->flag==='add'){
     	//いいね書き込み

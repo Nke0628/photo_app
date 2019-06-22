@@ -72,6 +72,15 @@
    border-radius:100px;    
 }
 
+/*HOME画面のプロフィール*/
+#search{
+	background-image: url({{asset('storage/tetwe.png')}});
+    background-size:cover;
+    height:500px;  
+    text-align:center;
+    color:white;
+}
+
 
 
 
