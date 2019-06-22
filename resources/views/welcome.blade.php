@@ -10,6 +10,7 @@
         <!-- Fonts&Bootstprap -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
 
         <!-- Styles -->
@@ -81,6 +82,7 @@
             footer{
                 background-color: #33383c;
                 padding:30px 0px;
+                margin-top: 120px;
             }          
 
             .logo{
@@ -208,10 +210,10 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-12">
                         <span class="logo">PhotoBase</span>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-12">
                         <ul class="menu">
                             <span>Menu</span>    
                             <li>
@@ -229,7 +231,7 @@
                         </ul>
                     </div>
                    
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-4 col-12">
                         <ul class="address">
                             <span>Contact</span>       
                             <li>
