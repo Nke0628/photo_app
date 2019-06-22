@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <p>「{{ $post->title }}」</p>
     <p>投稿日時{{ $post->created_at }}</p>
     @auth
@@ -20,7 +20,18 @@
     	</div>
     @endauth
     <br>
-    <img  class="show-photo" src="{{ asset('storage/' . $post->file_name) }}">
+
+    <!-- 投稿ユーザ部分 -->
+    <div class="row">
+    	<img class="show-photo" src="{{ asset('storage/' . $post->file_name) }}">
+        @if($post->user->user_image)
+        <img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="offset-md-1" style="width:100px; height:100px;  border-radius:100px;">
+        @else
+        <img src="{{ asset('storage/icon/person.png')}}" class="offset-md-1" style="width:100px; height:100px;  border-radius:100px;" >
+        @endif
+        <p>{{$post->user->name}}
+	</div>
+
 	<br>
 	<br>
 	<div class="row">

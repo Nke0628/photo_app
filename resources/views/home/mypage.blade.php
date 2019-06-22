@@ -4,9 +4,13 @@
 <div id="profile">
 	<div class="container">
 		<div class="row">
-	 		<h5 class="col-md-2 offset-md-5 mt-2 mb-5">プロフィール</h5>
+	 		<h5 class="col-md-2 offset-md-5 mt-5 mb-3">プロフィール</h5>
 		</div>
+		@if($user->user_image)
     	<img src="{{ asset('storage/icon/'. $user->user_image)}}" >
+    	@else
+    	<img src="{{ asset('storage/icon/person.png')}}" >
+    	@endif
     	<form class=" justify-content-center" method="post" action="{{ url('/mypage/icon') }}" enctype="multipart/form-data">
     		@csrf
     		<input type="file" name="icon" class="form-control-file col-md-5 offset-md-5 mt-2">
@@ -15,6 +19,7 @@
     		</div>
     	</form>
 	</div>
+</div>
 
 	<div class="container">
 		<form method="post" action="{{ url('/mypage/profile') }}">

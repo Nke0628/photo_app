@@ -27,11 +27,12 @@ class HomeController extends Controller
         //データ取得、ビュー表示
         $user_id = Auth::id();
         $posts = Post::where('user_id',$user_id)->get();
+        $user = User::find(Auth::id());
 
         //お気に入り取得
         $favorite_posts = Like::where('user_id',$user_id)->get();
 
-        return view('home.home',compact('posts','favorite_posts'));
+        return view('home.home',compact('posts','favorite_posts','user'));
 
     }
 
@@ -105,7 +106,7 @@ class HomeController extends Controller
         else {
             $file_name .= '.png';
         }
-        
+
         //保存
         $request->file('icon')->storeAs('public/icon',$file_name);
 

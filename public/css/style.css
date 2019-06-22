@@ -73,7 +73,7 @@
 }
 
 /*HOME画面のプロフィール*/
-#search{
+#home-profile{
 	background-image: url({{asset('storage/tetwe.png')}});
     background-size:cover;
     height:500px;  

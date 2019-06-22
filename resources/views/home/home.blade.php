@@ -2,8 +2,17 @@
 
 @section('content')
 
-<div id="home-profile">
+<div class="home-profile mb-5" style="height: 250px; background-image: url({{asset('storage/moon.jpg')}});
+padding-top: 0; opacity:0.9;color: white;text-align: center;">
     <div class="container">
+        <div class="row">
+            <h5 class="col-md-2 offset-md-5 mt-5">{{ $user->name }}</h5>
+        </div>
+        @if($user->user_image)
+        <img src="{{ asset('storage/icon/'. $user->user_image)}}" style="width:100px; height:100px;  border-radius:100px;">
+        @else
+        <img src="{{ asset('storage/icon/person.png')}}" style="width:100px; height:100px;  border-radius:100px;" >
+        @endif
     </div>
 </div>
 
