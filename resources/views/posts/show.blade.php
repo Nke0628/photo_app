@@ -23,13 +23,13 @@
 
     <!-- 投稿ユーザ部分 -->
     <div class="row">
-    	<img class="col-md-8 img-fluid show-photo" src="{{ asset('storage/' . $post->file_name) }}">
-        <div class="col-md-3 offset-md-1">
+    	<img class="col-12 col-md-8 img-fluid show-photo" src="{{ asset('storage/' . $post->file_name) }}">
+        <div class="col-md-3  mt-4 mt-md-0 offset-md-1">
         	<div class="row">
         	@if($post->user->user_image)
-        		<img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="" style="width:100px; height:100px;  border-radius:100px;">
+        		<img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="" style="width:50px; height:50px;  border-radius:50px;">
         	@else
-        		<img src="{{ asset('storage/icon/person.png')}}" class="" style="width:100px; height:100px;  border-radius:100px;" >
+        		<img src="{{ asset('storage/icon/person.png')}}" class="" style="width:50px; height:50px;  border-radius:50px;" >
         	@endif
         		<p class="col-md-2">{{$post->user->name}}</p>
         	</div>

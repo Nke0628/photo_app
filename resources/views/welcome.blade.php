@@ -78,13 +78,54 @@
                 margin-top: 100px;
             }
 
-            /*footer*/
             footer{
-                margin-top: 120px;
-                background-color: #f8fafc;
-                border-top: 1px solid #eee;
-                height: 150px;
+                background-color: #33383c;
+                padding:30px 0px;
+            }          
+
+            .logo{
+                color:#FFF;
+                font-weight:700;
+                font-size:30px;
             }
+
+            .address span , .menu span{
+               color: #FFF; 
+               font-weight: bold; 
+               border-bottom: 1px solid #c7c7c7; 
+               padding:10px 0px;
+               display: block;
+               text-transform: uppercase;
+               font-size: 16px;
+               letter-spacing: 3px;
+            }
+             
+            .address li a , .menu li a{
+                color:#FFF;
+                letter-spacing: 3px;
+                text-decoration:none;
+                font-size:14px;
+            }
+
+            .address li, .menu li{
+                margin:20px 0px;
+                list-style: none;
+            }
+
+            .address li a:hover , .menu li a:hover{
+                color: #da3e44;
+                -webkit-transition: all 1s ease-in-out;
+                -moz-transition: all 1s ease-in-out;
+                -o-transition: all 1s ease-in-out;
+                transition: all 1s ease-in-out;
+            }
+
+            .address .fa{
+                color: #da3e44;
+                margin-right: 10px;
+                font-size:18px;
+            }
+
         </style>
     </head>
     <body>
@@ -143,16 +184,67 @@
                     @endforeach
                 </div>
                 
-                <button type="button" class="btn btn-success mt-5" onclick="moreLook()">もっと写真を見る</button>
+                <button type="button" class="btn btn-success mb-5 mt-5" onclick="moreLook()">もっと写真を見る</button>
                 <input type="hidden" class="photo-param" value="1">
+            </div>
+        </div>
+
+        <div id="top-signup">
+            <div class="container mt-5">
+                <div class="row mb-4">
+                    <div class="mx-auto">
+                        <h2>PhotoBaseに登録する</h2>
+                    </div>  
+                </div>
+                <div class="row mb-4 mx-2">
+                        <p class="mx-auto" >登録して色々な人共有しましょう。コメントやお気に入り登録もできるようになります。</p>
+                </div>
+                <div class="row mb-5">
+                    <a  class="mx-auto m" href="{{ route('register') }}"><button class="btn btn-success" href="po">サインアップする！</button></a>
+                </div>
             </div>
         </div>
 
         <footer>
             <div class="container">
-                    私たちについて
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <span class="logo">PhotoBase</span>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="menu">
+                            <span>Menu</span>    
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>           
+                            <li>
+                                <a href="#">Blog</a>
+                            </li>          
+                            <li>
+                                <a href="#">Gallery </a>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="address">
+                            <span>Contact</span>       
+                            <li>
+                                <i class="fa fa-phone" aria-hidden="true"></i> <a href="#">Phone</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> <a href="#">Adress</a>
+                            </li> 
+                            <li>
+                                <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
+                            </li> 
+                        </ul>
+                    </div>
+                 </div> 
             </div>
-        </div>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
