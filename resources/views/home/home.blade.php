@@ -16,27 +16,33 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
     </div>
 </div>
 
+<!--写真投稿-->
 <div class="container">
     @if (session('flash_message'))
         <div class="flash_message bg-success text-center py-3 my-0">
             {{ session('flash_message') }}
         </div>
     @endif
+    <div class="row">
+        <div class="col-md-2">
+            <p>写真をアップロードする</p>
+        </div>
+    </div>
     <form class="form-group" method="post" action="{{url('posts')}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-1">
             <input type="text" name="title" class="form-control" value="{{ old('title') }}">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-1">
             <input type="file" name="photo" class="form-control">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1">
-             <input type="submit" name="submit" value="投稿" class="form-control">
+            <div class="col-md-1 mb-3">
+             <input type="submit" name="submit" value="投稿" class="btn btn-success">
             </div>
         </div>
     </form>
@@ -50,6 +56,7 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
         </div>
     @endif
 </div>
+
 <div class="home-contents">
     <div class="container">
          <div class="row">
@@ -62,33 +69,19 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
          </div>
          <div class="row photo-list">
             @foreach($posts as $post)
-                <div class="col-md-4">
-                    <a href="{{ url('home/'.$post->id)}}"><img src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px" style="margin-top: 20px;"></a>
+                <div class="col-md-4 col-12">
+                    <a href="{{ url('home/'.$post->id)}}"><img class="img-fluid" src="{{ asset('storage/' . $post->file_name) }}" style="margin-top: 20px;"></a>
                 </div>
             @endforeach
         </div>
         <div class="row favorite-list">
             @foreach($favorite_posts as $post)
-                <div class="col-md-4">
-                    <a href="{{ url('home/'.$post->post->id)}}"><img src="{{ asset('storage/'. $post->post->file_name) }}" width="300px" height="200px" style="margin-top: 20px;"></a>
+                <div class="col-md-4 col-12">
+                    <a href="{{ url('home/'.$post->post->id)}}"><img class="img-fluid" src="{{ asset('storage/'. $post->post->file_name) }}" style="margin-top: 20px;"></a>
                 </div>
             @endforeach
         </div>
     </div>
 </div>
-<!-- タブボタン部分 -->
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active">タブ1</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">タブ2</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">タブ3</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">タブ4</a>
-  </li>
-</ul>
+
 @endsection
