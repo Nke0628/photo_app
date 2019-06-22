@@ -64,18 +64,18 @@
 	</div>
 	@foreach($post->comments as $comment)
 		<div class="row mt-3">
-			<div class="col-md-1 pr-0 mr-0 pt-3 border-top"> 
+			<div class="col-2 col-md-1 pt-3 border-top"> 
         		<img src="{{ asset('storage/icon/'. $comment->user->user_image)}}" class="" style="width:50px; height:50px;  border-radius:100px;">
         	</div>
-        	<div class="col-md-6 pl-0 ml-0 pt-3 border-top">
+        	<div class="col-10 col-md-6 pt-3 border-top">
         		<div class="row"> 
-        			<div class="col-md-12">
+        			<div class="col-12">
 					{{$comment->user->name}}
 					{{$comment->created_at}}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12"> 
+					<div class="col-12"> 
 					{{$comment->comment}}
 					</div>
 				</div>
