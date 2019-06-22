@@ -23,7 +23,7 @@
 
     <!-- 投稿ユーザ部分 -->
     <div class="row">
-    	<img class="col-12 col-md-8 img-fluid show-photo" src="{{ asset('storage/' . $post->file_name) }}">
+    	<img class="col-12 col-md-8 img-fluid" src="{{ asset('storage/' . $post->file_name) }}">
         <div class="col-md-3  mt-4 mt-md-0 offset-md-1">
         	<div class="row">
         	@if($post->user->user_image)
