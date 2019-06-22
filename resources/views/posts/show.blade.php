@@ -23,18 +23,31 @@
 
     <!-- 投稿ユーザ部分 -->
     <div class="row">
-    	<img class="col-12 col-md-8 img-fluid" src="{{ asset('storage/' . $post->file_name) }}">
-        <div class="col-md-3  mt-4 mt-md-0 offset-md-1">
-        	<div class="row">
+        <div class="col-12 col-md-8">
+    	   <img class="img-fluid" src="{{ asset('storage/' . $post->file_name) }}">
+        </div>
+        <div class="col-12 col-md-3 ml-md-3 mt-4 mt-md-0">
+        	<div class="row ml-2 ml-md-0">
         	@if($post->user->user_image)
         		<img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="" style="width:50px; height:50px;  border-radius:50px;">
         	@else
         		<img src="{{ asset('storage/icon/person.png')}}" class="" style="width:50px; height:50px;  border-radius:50px;" >
         	@endif
-        		<p class="col-md-2">{{$post->user->name}}</p>
+                <div class="col-4 col-md-2">
+                    <div class="row">
+                        <div class="col-12">
+        		           {{$post->user->name}}
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12">
+                            <button class="btn btn-secondary follow" onclick="rmaddFollow()">フォロー</button>
+                        </div>
+                    </div>
+                </div>
         	</div>
         	<div class="row mt-5">
-        		<div class="col-md-12">
+        		<div class="col-12 col-md-12">
     				<form method="get" action="/posts/{{$post->id}}/download">
     				<input type="submit" value="ダウンロード" class="form-control bg-success text-white" style="cursor: pointer;">
 					</form>
