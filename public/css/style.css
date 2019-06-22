@@ -53,12 +53,6 @@
 	opacity: 1;
 }
 
-/*詳細画面の写真の大きさ*/
-.show-photo{
-	width: 800px;
-	max-height: 600px;
-}
-
 /*アカウント設定画面*/
 
 #profile{
