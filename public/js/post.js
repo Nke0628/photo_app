@@ -74,7 +74,7 @@ function moreLook(){
 			var id = res[index].id;
 			var file_name = res[index].file_name;
 			console.log(res[index].id);
-			$('#top-photo').find('.row').append('<div class="col-md-4" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"></a>');
+			$('#top-photo').find('.row').append('<div class="mx-auto" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"></a>');
 		}) 
 		
 		var page_number = parseInt(page)

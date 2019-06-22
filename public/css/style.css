@@ -1,4 +1,3 @@
-
 /*いいねボタン*/
 .fas{
 	cursor: pointer;
@@ -79,6 +78,16 @@
     height:500px;  
     text-align:center;
     color:white;
+}
+
+
+@media screen and (max-width: 540px) {
+/*詳細画面の写真の大きさ*/
+.show-photo{
+	max-width: 300px;
+	max-height: 200px;
+}
+
 }
 
 

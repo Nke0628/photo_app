@@ -132,9 +132,9 @@
             <div class="container">
                 <div class="row">
                     @foreach($posts as $post)
-                        <div class="col-md-4" style="margin-top:20px">
+                        <div class="mx-auto" style="margin-top:20px">
                             <a class="ph-style-base" href="{{ url('posts/'.$post->id)}}">
-                            <img class="ph-style" src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px">
+                            <img class="ph-style img-flud" src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px">
                             <p class="mask"> 
                             {{$post->likes->count()}}
                             </p>

@@ -23,24 +23,26 @@
 
     <!-- 投稿ユーザ部分 -->
     <div class="row">
-    	<img class="show-photo" src="{{ asset('storage/' . $post->file_name) }}">
-        @if($post->user->user_image)
-        <img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="offset-md-1" style="width:100px; height:100px;  border-radius:100px;">
-        @else
-        <img src="{{ asset('storage/icon/person.png')}}" class="offset-md-1" style="width:100px; height:100px;  border-radius:100px;" >
-        @endif
-        <p>{{$post->user->name}}
+    	<img class="col-md-8 img-fluid show-photo" src="{{ asset('storage/' . $post->file_name) }}">
+        <div class="col-md-3 offset-md-1">
+        	<div class="row">
+        	@if($post->user->user_image)
+        		<img src="{{ asset('storage/icon/'. $post->user->user_image)}}" class="" style="width:100px; height:100px;  border-radius:100px;">
+        	@else
+        		<img src="{{ asset('storage/icon/person.png')}}" class="" style="width:100px; height:100px;  border-radius:100px;" >
+        	@endif
+        		<p class="col-md-2">{{$post->user->name}}</p>
+        	</div>
+        	<div class="row mt-5">
+        		<div class="col-md-12">
+    				<form method="get" action="/posts/{{$post->id}}/download">
+    				<input type="submit" value="ダウンロード" class="form-control bg-success text-white" style="cursor: pointer;">
+					</form>
+				</div>
+			</div>
+    	</div>
 	</div>
 
-	<br>
-	<br>
-	<div class="row">
-		<div class="col-md-4">
-    		<form method="get" action="/posts/{{$post->id}}/download">
-    		<input type="submit" value="ダウンロード" class="form-control">
-			</form>
-		</div>
-	</div>
 	<br>
 	<div class="row">
 		<div class="col-md-4">
@@ -48,11 +50,22 @@
 		</div>
 	</div>
 	@foreach($post->comments as $comment)
-		<div class="row">
-			<div class="col-md-5"> 
-			{{$comment->user->name}}<br>
-			{{$comment->comment}}<br>
-			{{$comment->created_at}}<br><br>			
+		<div class="row mt-3">
+			<div class="col-md-1 pr-0 mr-0 pt-3 border-top"> 
+        		<img src="{{ asset('storage/icon/'. $comment->user->user_image)}}" class="" style="width:50px; height:50px;  border-radius:100px;">
+        	</div>
+        	<div class="col-md-6 pl-0 ml-0 pt-3 border-top">
+        		<div class="row"> 
+        			<div class="col-md-12">
+					{{$comment->user->name}}
+					{{$comment->created_at}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12"> 
+					{{$comment->comment}}
+					</div>
+				</div>
 			</div>
 		</div>
 	@endforeach

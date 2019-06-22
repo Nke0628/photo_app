@@ -78,10 +78,15 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="mb-5">
             @yield('content')
         </main>
+
+        <footer class="bg-white" style="height:200px;">
+
+        </footer>
     </div>
+
     <!--js、jQuery読み込み-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('/js/post.js') }}"></script>
