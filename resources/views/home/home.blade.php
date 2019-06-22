@@ -69,8 +69,8 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
          </div>
          <div class="row photo-list">
             @foreach($posts as $post)
-                <div class="col-md-4 col-12">
-                    <a href="{{ url('home/'.$post->id)}}"><img class="img-fluid" src="{{ asset('storage/' . $post->file_name) }}" style="margin-top: 20px;"></a>
+                <div class="col-md-4 col-sm-6 col-12 offset-1 offset-md-0 offset-sm-0">
+                    <a href="{{ url('home/'.$post->id)}}"><img class="img-fluid" src="{{ asset('storage/' . $post->file_name) }}" style="margin-top: 20px; width: 300px; height: 200px;"></a>
                 </div>
             @endforeach
         </div>

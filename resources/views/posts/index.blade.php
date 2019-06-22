@@ -9,9 +9,9 @@
          </div>
          <div class="row">
             @foreach($posts as $post)
-                <div class="col-md-4" style="margin-top:20px">
-                    <a class="ph-style-base" href="{{ url('posts/'.$post->id)}}">
-                    <img class="ph-style" src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px">
+                <div class="col-lg-4 col-md-6 col-12" style="margin-top:20px;">
+                    <a class="ph-style-base mx-auto" href="{{ url('posts/'.$post->id)}}">
+                    <img class="ph-style" src="{{ asset('storage/' . $post->file_name) }}" style="width: 350px; height: 250px;">
                     <p class="mask"> 
                         {{$post->likes->count()}}
                     </p>
