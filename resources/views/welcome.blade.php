@@ -30,7 +30,7 @@
 
             /* 検索セクション*/
             #search{
-                background-image: url({{asset('storage/tetwe.png')}});
+                background-image: url({{asset('storage/barley.jpg')}});
                 background-size:cover;
                 height:500px;  
                 text-align:center;
