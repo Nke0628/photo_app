@@ -41,7 +41,19 @@
                     </div>
                     <div class="row ">
                         <div class="col-12">
-                            <button class="btn btn-secondary follow" onclick="rmaddFollow()">フォロー</button>
+                            @auth
+                                @if($post->user->id === auth::id())
+                                @else
+                                    @if($follow)
+                                        <button class="btn btn-secondary follow disabled" onclick="rmaddFollow()">✔︎フォロー</button>
+                                    @else
+                                        <button class="btn btn-secondary follow" onclick="rmaddFollow()">フォロー</button>
+                                    @endif
+                                @endif
+                            @else
+                                <a href="{{url('/login')}}"><button class="btn btn-secondary follow">フォロー</button></a>
+                            @endauth
+                            <input type="hidden" class="follow-id" value="{{$post->user->id}}">
                         </div>
                     </div>
                 </div>
@@ -65,7 +77,7 @@
 	@foreach($post->comments as $comment)
 		<div class="row mt-3">
 			<div class="col-2 col-md-1 pt-3 border-top"> 
-        		<img src="{{ asset('storage/icon/'. $comment->user->user_image)}}" class="" style="width:50px; height:50px;  border-radius:100px;">
+        		<img src="{{ asset('storage/icon/'. $comment->user->user_image)}}" style="width:50px; height:50px;  border-radius:100px;">
         	</div>
         	<div class="col-10 col-md-6 pt-3 border-top">
         		<div class="row"> 
@@ -90,7 +102,7 @@
     		@csrf
       		<input type="hidden" name="id" value="{{ $post->id }}"> 		
       		<textarea name="comment" rows="4" cols="49" class="form-control"></textarea>
-    		<input type="submit" value="書き込む" class="form-control">
+    		<input type="submit" value="コメントを残しましょう" class="form-control">
 			</form>
 		</div>
 	</div>

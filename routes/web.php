@@ -35,3 +35,6 @@ Route::post('/comments','CommentController@store');
 
 //いいね機能
 Route::post('/likes','LikeController@goodStoreDel');
+
+//フォロー機能
+Route::Post('/follows', 'FollowController@followStoreDel');

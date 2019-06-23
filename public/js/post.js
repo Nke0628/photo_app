@@ -89,41 +89,38 @@ function moreLook(){
 
 //フォロ-ボタン機能
 function rmaddFollow(){
-	$('.follow').addClass('disabled');
-	$('.follow').html('✔︎フォロー');
-// 	var id = $(".post-id").val();
-// 	if($('.good').hasClass('color-red')){
-// 		var rmaddflag = 'rm';
-// 	}
-// 	else{
-// 		var rmaddflag = 'add';
-// 	}
-// 	$.ajax({
-// 		headers:{
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-// 		},
-// 		url:'/likes',
-// 		type:'POST',
-// 		datatype:'json',
-// 		data:{
-// 			item:id,
-// 			flag:rmaddflag
-// 		}
-// 	})
-// 	.done(function(data){
-// 		var res = JSON.parse(data);
-// 		$('.good-count').html(res.good_count);
+	var id = $(".follow-id").val();
+	if($('.follow').hasClass('disabled')){
+ 		var rmaddflag = 'rm';
+ 	}
+ 	else{
+ 		var rmaddflag = 'add';
+ 	}
+ 	$.ajax({
+ 		headers:{
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+ 		url:'/follows',
+ 		type:'POST',
+ 		datatype:'json',
+ 		data:{
+ 			item:id,
+ 			flag:rmaddflag
+ 		}
+ 	})
+ 	.done(function(data){
+ 		var res = JSON.parse(data);
 
-// 		if(rmaddflag==='rm'){
-// 			$('.fas').removeClass('color-red');
-// 		}
-// 		else{
-// 			$('.fas').addClass('color-red');
-
-// 		}
-// 	})
-// 	.fail(function(data){
-// 		alert(data.responseJSON);
-// 	})
+ 		if(rmaddflag==='rm'){
+			$('.follow').removeClass('disabled');
+			$('.follow').html('フォロー'); 		}
+ 		else{
+			$('.follow').addClass('disabled');
+			$('.follow').html('✔︎フォロー');
+ 		}
+ 	})
+ 	.fail(function(data){
+ 		alert(data.responseJSON);
+ 	})
 }
 

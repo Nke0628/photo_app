@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Follow;
 
 class PostController extends Controller
 {
@@ -20,7 +22,8 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        return view('posts.show',compact('post'));
+        $follow = DB::table('follows')->where('user_id',auth::id())->where('follow_id',$post->user->id)->get();
+        return view('posts.show',compact('post','follow'));
 
     }
 

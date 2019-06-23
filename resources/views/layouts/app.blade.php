@@ -82,11 +82,50 @@
             @yield('content')
         </main>
 
-        <footer class="bg-white" style="height:200px;">
-
-        </footer>
+    
     </div>
 
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <span class="logo">PhotoBase</span>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <ul class="menu">
+                            <span>Menu</span>    
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>           
+                            <li>
+                                <a href="#">Blog</a>
+                            </li>          
+                            <li>
+                                <a href="#">Gallery </a>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                    <div class="col-md-4 col-12">
+                        <ul class="address">
+                            <span>Contact</span>       
+                            <li>
+                                <i class="fa fa-phone" aria-hidden="true"></i> <a href="#">Phone</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> <a href="#">Adress</a>
+                            </li> 
+                            <li>
+                                <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
+                            </li> 
+                        </ul>
+                    </div>
+                 </div> 
+            </div>
+        </footer>
     <!--js、jQuery読み込み-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('/js/post.js') }}"></script>
