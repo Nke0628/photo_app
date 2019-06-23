@@ -44,7 +44,7 @@
                             @auth
                                 @if($post->user->id === auth::id())
                                 @else
-                                    @if($follow)
+                                    @if($follow->count()>0)
                                         <button class="btn btn-secondary follow disabled" onclick="rmaddFollow()">✔︎フォロー</button>
                                     @else
                                         <button class="btn btn-secondary follow" onclick="rmaddFollow()">フォロー</button>
