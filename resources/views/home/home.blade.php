@@ -37,12 +37,24 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
         @csrf
         <div class="row">
             <div class="col-md-3 mb-1">
+            タイトル
             <input type="text" name="title" class="form-control" value="{{ old('title') }}">
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 mb-1">
+            写真
             <input type="file" name="photo" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                タグ
+                <select class="js-example-basic-multiple" name="tags[]" multiple="multiple">
+                @foreach($tags as $tag)
+                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                @endforeach
+                </select>
             </div>
         </div>
         <div class="row">

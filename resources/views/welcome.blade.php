@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Photobase</title>
 
         <!-- Fonts&Bootstprap -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -14,121 +14,8 @@
 
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <link href="{{ asset('/css/welcome.css') }}" rel="stylesheet" type="text/css">
 
-            .title {
-                font-size: 25px;
-            }
-
-            /* 検索セクション*/
-            #search{
-                background-image: url({{asset('storage/barley.jpg')}});
-                background-size:cover;
-                height:500px;  
-                text-align:center;
-                color:white;
-            }
-
-            #search > .container{
-                padding-top: 150px;_
-            }
-
-
-
-            /* 写真のホバー時の動き　*/
-            .ph-style-base{
-                background-color: black;    
-                display: block;
-                position: relative;
-                height: 200px;
-                width: 300px;
-            }
-
-            .mask{
-                opacity: 0;
-                position: absolute;
-            　  top:0;
-                color: white;
-                margin: auto;   
-                width: 300px;
-            }
-
-            .ph-style:hover{
-                opacity:0.5;
-            }
-
-            .ph-style-base:hover .mask{
-                opacity: 1;
-            }
-
-            /*photo*/
-            #top-photo{
-                text-align: center;
-            }
-
-            /*about*/
-            #about{
-                margin-top: 100px;
-            }
-
-            footer{
-                background-color: #33383c;
-                padding:30px 0px;
-                margin-top: 120px;
-            }          
-
-            .logo{
-                color:#FFF;
-                font-weight:700;
-                font-size:30px;
-            }
-
-            .address span , .menu span{
-               color: #FFF; 
-               font-weight: bold; 
-               border-bottom: 1px solid #c7c7c7; 
-               padding:10px 0px;
-               display: block;
-               text-transform: uppercase;
-               font-size: 16px;
-               letter-spacing: 3px;
-            }
-             
-            .address li a , .menu li a{
-                color:#FFF;
-                letter-spacing: 3px;
-                text-decoration:none;
-                font-size:14px;
-            }
-
-            .address li, .menu li{
-                margin:20px 0px;
-                list-style: none;
-            }
-
-            .address li a:hover , .menu li a:hover{
-                color: #da3e44;
-                -webkit-transition: all 1s ease-in-out;
-                -moz-transition: all 1s ease-in-out;
-                -o-transition: all 1s ease-in-out;
-                transition: all 1s ease-in-out;
-            }
-
-            .address .fa{
-                color: #da3e44;
-                margin-right: 10px;
-                font-size:18px;
-            }
-
-        </style>
     </head>
     <body>
 
@@ -160,7 +47,6 @@
             <div class="container">
                 <h2>美しいフリー写真をみていこう</h2>
                 <form method="get" action="{{ url('/search' )}}">
-                    @csrf
                     <div class="form-group form-inline">
                         <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例:自然 山) スペース区切りで入力" name="keyword">
                         <input class="search-button form-control col-md-1" type="submit" name="submit" value="検索">

@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/select2.min.css') }}"  rel="stylesheet" />
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,6 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -66,7 +69,9 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-
+                                    <a class="dropdown-item" href="{{ url('/home')}}">
+                                       マイページ
+                                    </a>
                                     <a class="dropdown-item" href="{{ url('/mypage')}}">
                                        設定
                                     </a>
@@ -126,8 +131,10 @@
                  </div> 
             </div>
         </footer>
-    <!--js、jQuery読み込み-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--js、jQuery、select2読み込み-->
+    <--!<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ asset('js/select2.min.js') }}" defer></script>
     <script src="{{ asset('/js/post.js') }}"></script>
+
 </body>
 </html>

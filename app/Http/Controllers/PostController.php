@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\Follow;
 use App\Likes;
+use App\Tagmap;
 
 class PostController extends Controller
 {
@@ -42,7 +43,7 @@ class PostController extends Controller
 
         //フォロ-情報を取得
         $follow = DB::table('follows')->where('user_id',auth::id())->where('follow_id',$post->user->id)->get();
-        
+
         return view('posts.show',compact('post','follow'));
 
     }
@@ -85,6 +86,14 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->file_name = $file_name;
         $post->save();
+
+        //タグDB格納
+        foreach($request->tags as $tag){
+            $tagmap = new Tagmap;
+            $tagmap->post_id = $post->id;
+            $tagmap->tag_id = $tag;
+            $tagmap->save();
+        }
 
     	return redirect('/home')->with('flash_message','写真を投稿しました');
     }

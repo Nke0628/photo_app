@@ -1,3 +1,6 @@
+$(document).ready(function() {
+});
+
 $(function(){
 
 	$('.favorite').click(function(){
@@ -12,6 +15,10 @@ $(function(){
 	});
 
 	$('.flash_message').fadeOut(3000);
+
+	$('.js-example-basic-multiple').select2({
+		 width: '100%'
+	});
 
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\Like;
 use App\User;
@@ -39,7 +40,10 @@ class HomeController extends Controller
         //お気に入り取得
         $favorite_posts = Like::where('user_id',$user_id)->get();
 
-        return view('home.home',compact('posts','favorite_posts','user','follow_count','follower_count'));
+        //タグ取得
+        $tags = DB::table('tags')->get();
+
+        return view('home.home',compact('posts','favorite_posts','user','follow_count','follower_count','tags'));
 
     }
 
