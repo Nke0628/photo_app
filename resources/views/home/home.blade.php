@@ -8,7 +8,7 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
         <div class="row">
             <h5 class="col-md-2 offset-md-5 mt-5">{{ $user->name }}</h5>
         </div>
-        @if($user->user_image)
+        @if($user->user_image)hi"
         <img src="{{ asset('storage/icon/'. $user->user_image)}}" style="width:100px; height:100px;  border-radius:100px;">
         @else
         <img src="{{ asset('storage/icon/person.png')}}" style="width:100px; height:100px;  border-radius:100px;" >
