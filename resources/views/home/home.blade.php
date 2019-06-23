@@ -13,6 +13,11 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
         @else
         <img src="{{ asset('storage/icon/person.png')}}" style="width:100px; height:100px;  border-radius:100px;" >
         @endif
+        <div class="row mt-2">
+            <p class="mx-auto">
+            {{$follow_count}}フォロー
+            {{$follower_count}}フォロワー</p>
+        </div>
     </div>
 </div>
 

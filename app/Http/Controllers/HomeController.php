@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Like;
 use App\User;
+use App\Follow;
 
 class HomeController extends Controller
 {
@@ -27,12 +28,18 @@ class HomeController extends Controller
         //データ取得、ビュー表示
         $user_id = Auth::id();
         $posts = Post::where('user_id',$user_id)->get();
+
+        //ユーザー取得
         $user = User::find(Auth::id());
+
+        //フォロー、フォロワー数
+        $follow_count = Follow::where('user_id',Auth::id())->count();
+        $follower_count = Follow::where('follow_id',Auth::id())->count();       
 
         //お気に入り取得
         $favorite_posts = Like::where('user_id',$user_id)->get();
 
-        return view('home.home',compact('posts','favorite_posts','user'));
+        return view('home.home',compact('posts','favorite_posts','user','follow_count','follower_count'));
 
     }
 
