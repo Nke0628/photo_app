@@ -25,6 +25,7 @@ Route::post('/mypage/icon', 'HomeController@storeIcon');
 
 //投稿機能
 Route::get('/posts', 'PostController@index');
+Route::get('/search', 'PostController@search');
 Route::get('/posts/moreLook','PostController@moreLook');
 Route::get('/posts/{id}','PostController@show');
 Route::post('/posts', 'PostController@store');

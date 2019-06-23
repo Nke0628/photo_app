@@ -159,9 +159,10 @@
         <div id="search">
             <div class="container">
                 <h2>美しいフリー写真をみていこう</h2>
-                <form method="post" action="{{ url('/posts' )}}">
+                <form method="get" action="{{ url('/search' )}}">
+                    @csrf
                     <div class="form-group form-inline">
-                        <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例：人)" name="keyword">
+                        <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例:自然 山) スペース区切りで入力" name="keyword">
                         <input class="search-button form-control col-md-1" type="submit" name="submit" value="検索">
                     </div>
                 </form>

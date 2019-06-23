@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\Follow;
+use App\Likes;
 
 class PostController extends Controller
 {
@@ -17,12 +18,31 @@ class PostController extends Controller
         return view('posts.index',compact('posts'));
     }
 
+    //検索表示
+    public function search(Request $request)
+    {
+        //対象の投稿を取得
+        $keyword = $request->keyword;
+        $posts = DB::table('posts')->join('tagmaps','posts.id','=','tagmaps.post_id')->join('tags','tags.id','=','tagmaps.tag_id')->where('tags.name',$keyword)->select('posts.*')->get();
+
+        //いいね数をプロパティに追加
+        foreach($posts as $post){
+            $like = DB::table('likes')->where('post_id',$post->id)->count();
+            $post->like=$like;
+        }
+
+        return view('posts.search',compact('posts'));     
+    }
+
     //写真詳細
     public function show($id)
     {
 
         $post = Post::find($id);
+
+        //フォロ-情報を取得
         $follow = DB::table('follows')->where('user_id',auth::id())->where('follow_id',$post->user->id)->get();
+        
         return view('posts.show',compact('post','follow'));
 
     }
