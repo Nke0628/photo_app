@@ -14,7 +14,7 @@
 //トップページ
 Route::get('/', 'TopController@index');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //写真表示
 Route::get('/posts', 'PostController@index');
