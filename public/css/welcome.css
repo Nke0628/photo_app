@@ -27,29 +27,31 @@ html, body {
 
 
 /* 写真のホバー時の動き　*/
-.ph-style-base{
-    background-color: black;    
-    display: block;
-    position: relative;
-    height: 200px;
-    width: 300px;
+/*トレンド*/
+.hover-effect {
+    position:       relative;
 }
-
-.mask{
-    opacity: 0;
-    position: absolute;
-　  top:0;
-    color: white;
-    margin: auto;   
-    width: 300px;
+.hover-effect .caption {
+    width:          100%;
+    height:         100%;
+    text-align: center;
+    color:          #fff;
+    font-size: 15px;
 }
-
-.ph-style:hover{
-    opacity:0.5;
+.hover-effect .mask {
+    width:          100%;
+    height:         100%;
+    position:       absolute;
+    top:            0;
+    left:           0;
+    opacity:        0;  /* マスクを表示しない */
+    background-color:   rgba(0,0,0,0.4);
+    -webkit-transition: all 0.3s ease;
+    transition:     all 0.3s ease;
 }
-
-.ph-style-base:hover .mask{
-    opacity: 1;
+.hover-effect:hover .mask {
+    opacity:        1;  /* マスクを表示する */
+    padding-top: 25%;
 }
 
 /*photo*/

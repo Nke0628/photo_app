@@ -94,7 +94,7 @@ padding-top: 0; opacity:0.9;color: white;text-align: center;">
         <div class="row favorite-list">
             @foreach($favorite_posts as $post)
                 <div class="col-md-4 col-12">
-                    <a href="{{ url('home/'.$post->post->id)}}"><img class="img-fluid" src="{{ asset('storage/'. $post->post->file_name) }}" style="margin-top: 20px;"></a>
+                    <a href="{{ url('posts/'.$post->post->id)}}"><img class="img-fluid" src="{{ asset('storage/'. $post->post->file_name) }}" style="margin-top: 20px;"></a>
                 </div>
             @endforeach
         </div>

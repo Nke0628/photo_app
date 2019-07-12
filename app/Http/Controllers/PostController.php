@@ -35,6 +35,22 @@ class PostController extends Controller
         return view('posts.search',compact('posts'));     
     }
 
+    //トレンド表示
+    public function trend()
+    {
+        //TOP10を取得
+        $trends = DB::table('posts')->join('likes','posts.id','=','likes.post_id')->selectRaw('posts.id,title,file_name,count(posts.id) as rank')->groupBy('posts.id','title','file_name')->orderBy('rank','desc')->take(10)->get();
+       
+        //連番をプロパティに追加
+        $no = 1;
+        foreach($trends as $trend){
+            $trend->no = $no;
+            $no = $no + 1;
+        }
+
+        return view('posts.trend',compact('trends'));
+    }
+
     //写真詳細
     public function show($id)
     {
@@ -98,13 +114,20 @@ class PostController extends Controller
     	return redirect('/home')->with('flash_message','写真を投稿しました');
     }
 
-    //もっと見る機能
+    //もっと見る機能(ajax)
     public function moreLook(Request $request)
     {   
         //一回で9件取得する
         $page_number = $request->page_number;
         $next_offset = $page_number * 9;
         $posts = Post::skip($next_offset)->take(9)->get();
+
+        //いいね数をプロパティに追加
+        foreach($posts as $post){
+            $like = DB::table('likes')->where('post_id',$post->id)->count();
+            $post->like=$like;
+        }
+        
         $post = json_encode($posts);
         return $post; 
     }

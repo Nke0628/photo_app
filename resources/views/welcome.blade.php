@@ -20,18 +20,33 @@
     <body>
 
         <nav class="navbar navbar-expand-md  navbar-light p-4" style="background-color: white;">
+                            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item title"><a class="nav-link" href="/">PhotoBase</a></li>
+                </ul>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
              </button>
   
             <div class="collapse navbar-collapse" id="bs-navi">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item title"><a class="nav-link" href="/">PhotoBase</a></li>
                 </ul>
                 @if (Route::has('login'))
                 <ul class="navbar-nav">
-                     @auth
-                    <li class="nav-item mx-15"><a class="nav-link" href="{{ url('/posts') }}">写真</a></li>
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        写真を探す
+                        <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/posts')}}">
+                                一覧
+                            </a>
+                            <a class="dropdown-item" href="{{ url('/trend')}}">
+                                トレンド
+                            </a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">HOME</a></li>
                     @else
                     <li class="nav-item"><a class="nav-link" href="{{ url('/posts') }}">写真</a></li>
@@ -62,12 +77,16 @@
             <div class="container">
                 <div class="row">
                     @foreach($posts as $post)
-                        <div class="mx-auto" style="margin-top:20px">
+                        <div class="mx-auto hover-effect" style="margin-top:20px">
                             <a class="ph-style-base" href="{{ url('posts/'.$post->id)}}">
                             <img class="ph-style img-flud" src="{{ asset('storage/' . $post->file_name) }}" width="300px" height="200px">
-                            <p class="mask"> 
-                            {{$post->likes->count()}}
-                            </p>
+                            <div class="mask">
+                                <div class="caption">
+                                    {{$post->title}}<br>
+                                    <i class="far fa-heart"></i>
+                                    {{$post->likes->count()}}
+                                </div>
+                            </div>
                             </a>
                         </div>
                     @endforeach

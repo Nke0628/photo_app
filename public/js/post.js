@@ -80,8 +80,10 @@ function moreLook(){
 		$.each(res,function(index,value){
 			var id = res[index].id;
 			var file_name = res[index].file_name;
+			var title = res[index].title;
+			var like = res[index].like;
 			console.log(res[index].id);
-			$('#top-photo').find('.row').append('<div class="mx-auto" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"></a>');
+			$('#top-photo').find('.row').append('<div class="mx-auto hover-effect" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"><div class="mask"><div class="caption">' + title + '<br><i class="far fa-heart"></i>' + like + '</div></div></a>');
 		}) 
 		
 		var page_number = parseInt(page)
