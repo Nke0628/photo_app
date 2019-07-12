@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Service\PostService;
+
 use App\Post;
 use App\Follow;
 use App\Likes;
@@ -13,12 +15,20 @@ use App\Tagmap;
 class PostController extends Controller
 {
 
+    protected $postservice;
+
+    public function __construct(PostService $postservice)
+    {
+        $this->postservice = $postservice;
+    }
+
     //一覧表示
     public function index()
     {
 
         //一覧取得
         $posts = Post::all();
+        $test = $this->postservice->echohoge();
 
         //画像幅をランダムに散らす
         //widthをプロパティに追加
@@ -44,7 +54,7 @@ class PostController extends Controller
             $count++;
         }
 
-        return view('posts.index',compact('posts'));
+        return view('posts.index',compact('posts','test'));
     }
 
 
