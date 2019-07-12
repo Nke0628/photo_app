@@ -33,7 +33,7 @@ function ajustWidth(){
 		$('.test').addClass('mt-3');
 		$('.test2').width('300px');
 		$('.test3').width('300px');
-	}else if(width <= 1000){
+	}else if(width <= 1140){
 		$('.test').addClass('mt-3');
 		$('.test2').width('300px');
 		$('.test3').width('300px');
