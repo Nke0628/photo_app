@@ -18,6 +18,7 @@ Auth::routes(['verify' => true]);
 
 //写真表示
 Route::get('/posts', 'PostController@index');
+Route::get('/posts2', 'PostController@index2');
 Route::get('/search', 'PostController@search');
 Route::get('/trend', 'PostController@trend');
 Route::get('/posts/moreLook','PostController@moreLook');

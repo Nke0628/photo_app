@@ -1,6 +1,15 @@
 $(document).ready(function() {
-
-	ajustWidth();
+	var width = window.innerWidth;
+	if( width <= 540){
+		$('.test').addClass('col-12');
+		$('.test').addClass('mt-3');
+		$('.test2').width('300px');
+		$('.test3').width('300px');
+	}else if(width <= 1140){
+		$('.test').addClass('mt-3');
+		$('.test2').width('300px');
+		$('.test3').width('300px');
+	}
 
 });
 
@@ -24,21 +33,6 @@ $(function(){
 	});
 
 });
-
-//画像の表示幅を整える
-function ajustWidth(){
-	var width = window.innerWidth;
-	if( width <= 540){
-		$('.test').addClass('col-12');
-		$('.test').addClass('mt-3');
-		$('.test2').width('300px');
-		$('.test3').width('300px');
-	}else if(width <= 1140){
-		$('.test').addClass('mt-3');
-		$('.test2').width('300px');
-		$('.test3').width('300px');
-	}
-}
 
 
 //Ajaxいいねボタン機能
@@ -100,16 +94,13 @@ function moreLook(){
 			var file_name = res[index].file_name;
 			var title = res[index].title;
 			var like = res[index].like;
-			var width = res[index].width;
-
 			console.log(res[index].id);
-			$('#top-photo').find('.row').append('<div class="hover-effect test mt-1 mr-1"><a class="test2 ph-style-base mx-auto" href="posts/' + id + '"style="height: 200px; width:' + width + 'px"><img class="test3" src="storage/'+ file_name + '" style="height: 200px; width:' + width + 'px"><div class="mask"><div class="caption">' + title +'<br><i class="far fa-heart"></i>' + like + '</div></div></a></div>');
-		})
-
+			$('#top-photo').find('.row').append('<div class="mx-auto hover-effect" style="margin-top:20px"><a class="ph-style-base" href="posts/' + id + '"><img class="ph-style" src="storage/' + file_name + '"width="300px" height="200px"><div class="mask"><div class="caption">' + title + '<br><i class="far fa-heart"></i>' + like + '</div></div></a>');
+		}) 
+		
 		var page_number = parseInt(page)
 		page_number = page_number + 1
 		$('.photo-param').val(page_number);
-		ajustWidth();
 
 	})
 	.fail(function(data){

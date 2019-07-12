@@ -15,9 +15,37 @@ class PostController extends Controller
     //一覧表示
     public function index()
     {
+
+        //一覧取得
         $posts = Post::all();
+
+        //画像幅をランダムに散らす
+        //widthをプロパティに追加
+        $count = 1;
+        $total = 0;
+
+        foreach($posts as $post){
+
+            if($count == 4 ){
+                $width = 1100 - $total;
+            }else{
+                $width = rand(230,300);
+                $total = $total + $width;
+            }
+
+            $post->width=$width;
+
+            if($count == 4){
+                $count = 0;
+                $total=0;
+            }
+
+            $count++;
+        }
+
         return view('posts.index',compact('posts'));
     }
+
 
     //検索表示
     public function search(Request $request)
@@ -121,13 +149,37 @@ class PostController extends Controller
     {   
         //一回で9件取得する
         $page_number = $request->page_number;
-        $next_offset = $page_number * 9;
-        $posts = Post::skip($next_offset)->take(9)->get();
+        $next_offset = $page_number * 12;
+        $posts = Post::skip($next_offset)->take(12)->get();
 
         //いいね数をプロパティに追加
         foreach($posts as $post){
             $like = DB::table('likes')->where('post_id',$post->id)->count();
             $post->like=$like;
+        }
+
+                //画像幅をランダムに散らす
+        //widthをプロパティに追加
+        $count = 1;
+        $total = 0;
+
+        foreach($posts as $post){
+
+            if($count == 4 ){
+                $width = 1100 - $total;
+            }else{
+                $width = rand(230,300);
+                $total = $total + $width;
+            }
+
+            $post->width=$width;
+
+            if($count == 4){
+                $count = 0;
+                $total=0;
+            }
+
+            $count++;
         }
 
         $post = json_encode($posts);
