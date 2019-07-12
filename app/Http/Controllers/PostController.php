@@ -24,7 +24,9 @@ class PostController extends Controller
     {
         //対象の投稿を取得
         $keyword = $request->keyword;
-        $posts = DB::table('posts')->join('tagmaps','posts.id','=','tagmaps.post_id')->join('tags','tags.id','=','tagmaps.tag_id')->where('tags.name',$keyword)->select('posts.*')->get();
+        $posts_tag = DB::table('posts')->join('tagmaps','posts.id','=','tagmaps.post_id')->join('tags','tags.id','=','tagmaps.tag_id')->where('tags.name',$keyword)->select('posts.*');
+
+        $posts = DB::table('posts')->where('title','like','%'. $keyword . '%')->union($posts_tag)->get();
 
         //いいね数をプロパティに追加
         foreach($posts as $post){
@@ -32,7 +34,7 @@ class PostController extends Controller
             $post->like=$like;
         }
 
-        return view('posts.search',compact('posts'));     
+        return view('posts.search',compact('posts','keyword'));     
     }
 
     //トレンド表示
@@ -127,7 +129,7 @@ class PostController extends Controller
             $like = DB::table('likes')->where('post_id',$post->id)->count();
             $post->like=$like;
         }
-        
+
         $post = json_encode($posts);
         return $post; 
     }

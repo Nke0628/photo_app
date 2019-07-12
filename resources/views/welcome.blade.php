@@ -49,8 +49,20 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}">HOME</a></li>
                     @else
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/posts') }}">写真</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        写真を探す
+                        <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/posts')}}">
+                                一覧
+                            </a>
+                            <a class="dropdown-item" href="{{ url('/trend')}}">
+                                トレンド
+                            </a>
+                        </div>
+                    </li>                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">登録</a></li>
                     @endauth
                 </ul>
@@ -63,7 +75,7 @@
                 <h2>美しいフリー写真をみていこう</h2>
                 <form method="get" action="{{ url('/search' )}}">
                     <div class="form-group form-inline">
-                        <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例:自然 山) スペース区切りで入力" name="keyword">
+                        <input class="search-text form-control col-md-7 offset-md-2" type="text" placeholder="キーワード(例:自然)" name="keyword">
                         <input class="search-button form-control col-md-1" type="submit" name="submit" value="検索">
                     </div>
                 </form>

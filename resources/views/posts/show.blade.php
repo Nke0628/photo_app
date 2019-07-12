@@ -23,8 +23,16 @@
 
     <!-- 投稿ユーザ部分 -->
     <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 hover-effect pr-md-0 pl-md-0">
     	   <img class="img-fluid" src="{{ asset('storage/' . $post->file_name) }}">
+                <div class="mask">
+                    <div class="caption">
+                        {{$post->title}}<br>
+                        <i class="far fa-heart"></i>
+                        {{$post->likes->count()}}<br>
+                        by {{$post->user->name}}
+                    </div>
+                </div>
         </div>
         <div class="col-12 col-md-3 ml-md-3 mt-4 mt-md-0">
         	<div class="row ml-2 ml-md-0">

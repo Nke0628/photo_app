@@ -21,7 +21,6 @@
                                 {{$trend->title}}<br>
                                 <i class="far fa-heart"></i>
                                  {{$trend->rank}}</div>
-                                }
                         </div>
                     </a>
                 </div>
