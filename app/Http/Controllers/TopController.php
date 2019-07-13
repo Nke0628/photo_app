@@ -3,41 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Service\PostService;
 use App\Post;
 
 
 class TopController extends Controller
 {
+    protected $postservice;
+
+    //投稿系のサービス層をDIする
+    public function __construct(PostService $postservice)
+    {
+        $this->postservice = $postservice;
+    }
+
     //一覧表示
     public function index()
     {
     	//TOPは最初９枚取得する
         $posts = Post::take(12)->get();
+        //各画像幅の調整
+        $posts = $this->postservice->ajustWidth($posts);
 
-
-        //画像幅をランダムに散らす
-        //widthをプロパティに追加
-        $count = 1;
-        $total = 0;
-
-        foreach($posts as $post){
-
-            if($count == 4 ){
-                $width = 1100 - $total;
-            }else{
-                $width = rand(200,300);
-                $total = $total + $width;
-            }
-
-            $post->width=$width;
-
-            if($count == 4){
-                $count = 0;
-                $total=0;
-            }
-
-            $count++;
-        }
         return view('welcome',compact('posts'));
     }
 }

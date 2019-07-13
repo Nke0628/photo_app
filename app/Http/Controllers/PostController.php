@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Service\PostService;
-
 use App\Post;
 use App\Follow;
 use App\Likes;
@@ -17,6 +16,7 @@ class PostController extends Controller
 
     protected $postservice;
 
+    //投稿系のサービス層をDIする
     public function __construct(PostService $postservice)
     {
         $this->postservice = $postservice;
@@ -25,53 +25,23 @@ class PostController extends Controller
     //一覧表示
     public function index()
     {
-
         //一覧取得
         $posts = Post::all();
-        $test = $this->postservice->echohoge();
+        //各画像幅の調整
+        $posts = $this->postservice->ajustWidth($posts);
 
-        //画像幅をランダムに散らす
-        //widthをプロパティに追加
-        $count = 1;
-        $total = 0;
-
-        foreach($posts as $post){
-
-            if($count == 4 ){
-                $width = 1100 - $total;
-            }else{
-                $width = rand(230,300);
-                $total = $total + $width;
-            }
-
-            $post->width=$width;
-
-            if($count == 4){
-                $count = 0;
-                $total=0;
-            }
-
-            $count++;
-        }
-
-        return view('posts.index',compact('posts','test'));
+        return view('posts.index',compact('posts'));
     }
-
 
     //検索表示
     public function search(Request $request)
     {
-        //対象の投稿を取得
+        //対象の投稿を取得(検索条件:タイトルorタグに含まれる)
         $keyword = $request->keyword;
         $posts_tag = DB::table('posts')->join('tagmaps','posts.id','=','tagmaps.post_id')->join('tags','tags.id','=','tagmaps.tag_id')->where('tags.name',$keyword)->select('posts.*');
-
         $posts = DB::table('posts')->where('title','like','%'. $keyword . '%')->union($posts_tag)->get();
-
         //いいね数をプロパティに追加
-        foreach($posts as $post){
-            $like = DB::table('likes')->where('post_id',$post->id)->count();
-            $post->like=$like;
-        }
+        $posts = $this->postservice->addGood($posts);
 
         return view('posts.search',compact('posts','keyword'));     
     }
@@ -81,13 +51,8 @@ class PostController extends Controller
     {
         //TOP10を取得
         $trends = DB::table('posts')->join('likes','posts.id','=','likes.post_id')->selectRaw('posts.id,title,file_name,count(posts.id) as rank')->groupBy('posts.id','title','file_name')->orderBy('rank','desc')->take(10)->get();
-       
         //連番をプロパティに追加
-        $no = 1;
-        foreach($trends as $trend){
-            $trend->no = $no;
-            $no = $no + 1;
-        }
+        $treds = $this->postservice->addSeqno($trends);
 
         return view('posts.trend',compact('trends'));
     }
@@ -97,7 +62,6 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-
         //フォロ-情報を取得
         $follow = DB::table('follows')->where('user_id',auth::id())->where('follow_id',$post->user->id)->get();
 
@@ -114,26 +78,8 @@ class PostController extends Controller
             'title' => 'required',
             'photo' => 'required|file|image'
         ]);
-
-        //写真保存
-        //ファイルネームはランダムな１２桁から作成する
-    	$characters = array_merge(
-        	range(0, 9), range('a', 'z'),
-         	range('A', 'Z'), ['-', '_']
-        );
-        $length=count($characters);
-        $file_name='';
-        for($i = 0 ; $i < 12 ; $i++){
-            $file_name .=$characters[random_int(0,$length-1)];
-        }
-
-        //jpgかpngにする
-        if(preg_match('/jpg$/', $request->file('photo')->getClientOriginalName())){
-            $file_name .= '.jpg';
-        }
-        else {
-            $file_name .= '.png';
-        }
+        //ファイル名作成
+        $file_name = $this->postservice->makePhotoName($request);
         //保存
         $request->file('photo')->storeAs('public',$file_name);
 
@@ -158,42 +104,17 @@ class PostController extends Controller
     //もっと見る機能(ajax)
     public function moreLook(Request $request)
     {   
-        //一回で9件取得する
+        //一回で12件取得する
         $page_number = $request->page_number;
         $next_offset = $page_number * 12;
         $posts = Post::skip($next_offset)->take(12)->get();
-
         //いいね数をプロパティに追加
-        foreach($posts as $post){
-            $like = DB::table('likes')->where('post_id',$post->id)->count();
-            $post->like=$like;
-        }
-
-                //画像幅をランダムに散らす
-        //widthをプロパティに追加
-        $count = 1;
-        $total = 0;
-
-        foreach($posts as $post){
-
-            if($count == 4 ){
-                $width = 1100 - $total;
-            }else{
-                $width = rand(230,300);
-                $total = $total + $width;
-            }
-
-            $post->width=$width;
-
-            if($count == 4){
-                $count = 0;
-                $total=0;
-            }
-
-            $count++;
-        }
-
+        $posts = $this->postservice->addGood($posts);
+        //各画像幅の調整
+        $posts = $this->postservice->ajustWidth($posts);
+        //jsonに変換
         $post = json_encode($posts);
+
         return $post; 
     }
 }
